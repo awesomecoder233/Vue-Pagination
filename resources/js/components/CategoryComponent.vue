@@ -136,40 +136,40 @@
                     console.log("Error.....")
                 })
             },
-        deleteCategory(id) {
-            Swal.fire({
-              title: 'Are you sure?',
-              text: "You won't be able to revert this!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                
-              if (result.value) {
-            
-                this.form.delete('api/category/'+id)
-                    .then((response)=> {
-                            Swal.fire(
-                              'Deleted!',
-                              'Category deleted successfully',
-                              'success'
-                            )
+            deleteCategory(id) {
+                Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
                     
-                    Fire.$emit('load_category');
+                if (result.value) {
+                
+                    this.form.delete('api/category/'+id)
+                        .then((response)=> {
+                                Swal.fire(
+                                'Deleted!',
+                                'Category deleted successfully',
+                                'success'
+                                )
+                        
+                        Fire.$emit('load_category');
 
-                    }).catch(() => {
-                        Swal.fire({
-                          icon: 'error',
-                          title: 'Oops...',
-                          text: 'Something went wrong!',
+                        }).catch(() => {
+                            Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                            })
                         })
-                    })
-                }
+                    }
 
-            })
+                })
+            },
         },
-    },
     }
 </script>

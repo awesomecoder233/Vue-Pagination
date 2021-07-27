@@ -75,67 +75,67 @@
             }
         },
         methods: {
-        openModalWindow(){
-           this.editMode = false
-           this.form.reset();
-           $('#addNew').modal('show');
-        },
-        fetchingAllCategory() {
+            openModalWindow(){
+                this.editMode = false
+                this.form.reset();
+                $('#addNew').modal('show');
+                },
+            fetchingAllCategory() {
 
-          axios.get("api/category").then( data => (this.categories = data.data));
+            axios.get("api/category").then( data => (this.categories = data.data));
 
 
-        },
-        getResults(page = 1) {
-              axios.get('api/category?page=' + page)
-                .then(response => {
-                  this.categories = response.data;
-              });
-        },
-        createCategory(){
+            },
+            getResults(page = 1) {
+                axios.get('api/category?page=' + page)
+                    .then(response => {
+                    this.categories = response.data;
+                });
+            },
+            createCategory(){
 
-            this.form.post('api/category')
-                .then(() => {
+                this.form.post('api/category')
+                    .then(() => {
 
-                        Fire.$emit('load_category'); 
+                            Fire.$emit('load_category'); 
 
-                        Toast.fire({
-                          icon: 'success',
-                          title: 'Category created successfully'
-                        })
+                            Toast.fire({
+                            icon: 'success',
+                            title: 'Category created successfully'
+                            })
 
-                        $('#addNew').modal('hide');
+                            $('#addNew').modal('hide');
 
-                })
-                .catch(() => {
-                   console.log("Error......")
-                })
-
-        },
-        editModalWindow(supplier){
-               this.form.clear();
-               this.editMode = true
-               this.form.reset();
-               $('#addNew').modal('show');
-               this.form.fill(supplier)
-        },
-        updateCategory(){
-           this.form.put('api/category/'+this.form.id)
-               .then(()=>{
-
-                   Toast.fire({
-                      icon: 'success',
-                      title: 'Category updated successfully'
+                    })
+                    .catch(() => {
+                    console.log("Error......")
                     })
 
-                    Fire.$emit('load_category');
+            },
+            editModalWindow(supplier){
+                this.form.clear();
+                this.editMode = true
+                this.form.reset();
+                $('#addNew').modal('show');
+                this.form.fill(supplier)
+            },
+            updateCategory(){
+            this.form.put('api/category/'+this.form.id)
+                .then(()=>{
 
-                    $('#addNew').modal('hide');
-               })
-               .catch(()=>{
-                  console.log("Error.....")
-               })
-        },
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Category updated successfully'
+                        })
+
+                        Fire.$emit('load_category');
+
+                        $('#addNew').modal('hide');
+                })
+                .catch(()=>{
+                    console.log("Error.....")
+                })
+            },
         deleteCategory(id) {
             Swal.fire({
               title: 'Are you sure?',

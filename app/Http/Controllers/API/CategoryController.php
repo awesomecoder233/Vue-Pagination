@@ -57,6 +57,15 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $supplier = Category::findOrFail($id);
+
+        $supplier->update($request->all());
+
+        return response()->json(['success' => 'Category updated successfully'],Response::HTTP_OK);
     }
 
     /**
@@ -68,5 +77,10 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        return response()->json(['success' => 'Category deleted successfully'],Response::HTTP_OK);
     }
 }

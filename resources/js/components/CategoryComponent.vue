@@ -61,3 +61,18 @@
         </div>
   </div>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                editMode: false,
+                categories: {},
+                form: new Form({
+                    id: '',
+                    name : '',
+                }),
+            }
+        },
+    }
+</script>

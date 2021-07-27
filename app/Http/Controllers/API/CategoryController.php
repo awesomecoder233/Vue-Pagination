@@ -15,6 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        return $request->ajax() ? Category::paginate(5) : abort(404);
     }
 
     /**
@@ -26,6 +27,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'name' => 'required|unique:categories',
+        ]);
+
+        Category::create($request->all());
+
+        return response()->json(['success' => 'Category created successfully'],Response::HTTP_OK);
     }
 
     /**

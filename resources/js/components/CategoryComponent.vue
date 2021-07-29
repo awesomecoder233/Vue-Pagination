@@ -171,5 +171,14 @@
                 })
             },
         },
+        created(){
+
+            this.fetchingAllCategory();
+
+            Fire.$on('load_category',()=>{
+            this.fetchingAllCategory();
+            });
+
+        },
     }
 </script>

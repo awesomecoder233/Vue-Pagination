@@ -182,3 +182,10 @@
         },
     }
 </script>
+
+<style scoped>
+    .pagination {
+        margin-top: 30px;
+        float: right;
+    }
+</style>
